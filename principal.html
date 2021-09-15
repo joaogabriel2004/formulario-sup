@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando ao formulário</title>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+    <script>
+        window.onload = function() {
+            var dataAtual = new Date();
+            var dia = dataAtual.getDate();
+            var mes = (dataAtual.getMonth() + 1);
+            var ano = dataAtual.getFullYear();
+            var horas = dataAtual.getHours();
+            var minutos = dataAtual.getMinutes();
+            var horario_comeco
+
+            if (horas < 10){
+                var horario_comeco = "0" + horas + ":" + minutos
+            } 
+            if (minutos < 10) {
+                var horario_comeco = "" + horas + ":" + "0" + minutos
+            } 
+            if (horas < 10 && minutos < 10){
+                var horario_comeco = "0" + horas + ":" + "0" + minutos
+            }
+            if (horas >= 10 && minutos >= 10){
+                var horario_comeco = "" + horas + ":" + minutos
+            }
+
+            if (dia < 10){
+                var dia_comeco = ano + "-" + mes + "-0" + dia
+            }
+            if (mes < 10){
+                var dia_comeco = ano + "-0" + mes + "-" + dia
+            }
+            if (dia < 10 && mes < 10){
+                var dia_comeco = ano + "-0" + mes + "-0" + dia
+            }
+
+            if (dia > 10 && mes > 10){
+                var dia_comeco = ano + "-" + mes + "-" + dia
+            }
+
+
+            var link = window.location.href
+            var usuario = link.substring(link.indexOf("=") + 1);
+            var nick = (usuario).value
+            var trecho1 = "https://docs.google.com/forms/d/e/1FAIpQLScASvsO-hPsZJqHOpGfmjmy1ZCQliAciZ2xQaBuOax3TvACxg/viewform?usp=pp_url&entry.1285543461="
+            var trecho2 = "&entry.9174424="
+            var trecho3 = "&entry.1116948181="
+            var urlget = trecho1 + link.substring(link.indexOf("=") + 1) + trecho2 + dia_comeco + "+" + horario_comeco + trecho3 + "SUP"
+            window.location.href = urlget
+            
+            //https://docs.google.com/forms/d/e/1FAIpQLScASvsO-hPsZJqHOpGfmjmy1ZCQliAciZ2xQaBuOax3TvACxg/viewform?usp=pp_url&entry.1285543461=%7BUSERNAME%7D&entry.9174424=0000-00-00+00:00&entry.1116948181=SUP
+        }
+
+    </script>
+</head>
+<body>
+
+    <h1 id="horario_inicio"></h1>
+    <h1 id="nick_sup"></h1>
+    <h1 id="url"></h1>
+</body>
+</html>
